@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/**
+* ! setup the colors
+**/
+
+:root {
+    --mainColor: #293241;
+    --textColor: #eaf9fa;
+    --bodyColor: #f7f7f7;
+    --buttonsColor: #ee6c4d;
+    --cardColor: #98c1d9;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/**
+* ? setup the navbar style
+**/
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--mainColor);
+    color: var(--textColor);
+    padding: 25px 60px;
+}
+
+.cart {
+    position: relative;
+    padding: 5px;
+    font-size: 30px;
+}
+
+.cart .cart-amount {
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    font-size: 15px;
+    padding: 4px;
+    border-radius: 5px;
+    background-color: red;
+    color: var(--textColor);
+}
