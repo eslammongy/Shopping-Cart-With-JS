@@ -65,6 +65,18 @@ body {
     justify-content: center;
 }
 
+@media(max-width:994px) {
+    .crat-container {
+        grid-template-columns: repeat(2, 260px);
+    }
+}
+
+@media(max-width:767px) {
+    .crat-container {
+        grid-template-columns: repeat(1, 80%);
+    }
+}
+
 .crat-container .cart-item {
     text-align: center;
     border-radius: 8px;
@@ -108,6 +120,12 @@ body {
     gap: 5px;
 }
 
-.crat-container .cart-details .price-quantity .buttons i {
-    color: var(--buttonsColor);
+.buttons .fa-minus {
+    color: red;
+    font-weight: bold;
+}
+
+.buttons .fa-plus {
+    color: green;
+    font-weight: bold;
 }
