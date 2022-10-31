@@ -25,12 +25,16 @@ let cartItemsInfo = [{
     image: 'images/superhero_0.png'
 }];
 
-let itemsBusket = [];
+let itemsBusket = JSON.parse(localStorage.getItem("data")) || [];
 /* generate cart container automaticlly */
 let generateCart = () => {
 
     return cartItemsInfo.map((item) => {
-        let { id, name, price, desc, image } = item
+        let { id, name, price, desc, image } = item;
+
+        let getStroageData = itemsBusket.find((item) => item.id == id) || [];
+        console.log(itemsBusket);
+        console.log(getStroageData);
         return `
     <div id="product-id-${id}" class="cart-item">
             <img width="200" src="${image}" alt="" />
@@ -41,7 +45,7 @@ let generateCart = () => {
                     <h2>${price}</h2>
                     <div class="buttons">
                         <i onclick="decrementAmount(${id})" class="fa-solid fa-minus"></i>
-                        <div id="${id}" class="quantity">0</div>
+                        <div id="${id}" class="quantity">${getStroageData.count === undefined ? 0 : getStroageData.count}</div>
                         <i onclick="incrementAmount(${id})" class="fa-solid fa-plus"></i>
                     </div>
                 </div>
@@ -64,7 +68,7 @@ let incrementAmount = (id) => {
         item.count += 1;
     }
 
-    console.log(itemsBusket);
+    localStorage.setItem('data', JSON.stringify(itemsBusket));
     update(id);
 }
 let decrementAmount = (id) => {
@@ -76,7 +80,7 @@ let decrementAmount = (id) => {
         item.count -= 1;
     }
 
-    console.log(itemsBusket);
+    localStorage.setItem('data', JSON.stringify(itemsBusket));
     update(id);
 }
 let update = (id) => {
@@ -92,3 +96,5 @@ let calcItems = () => {
     let itemsNum = itemsBusket.map((item) => item.count).reduce((x, y) => x + y, 0);
     cartIcon.innerHTML = itemsNum;
 }
+
+calcItems();
