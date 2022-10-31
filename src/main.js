@@ -24,6 +24,8 @@ let cartItemsInfo = [{
     desc: "Excepteur esse cillum ut nulla commodo Lorem nulla est ullamco ut consequat in Laborum exercitation voluptate non ad ut et.",
     image: 'images/superhero_0.png'
 }];
+
+let itemsBusket = [];
 /* generate cart container automaticlly */
 let generateCart = () => {
 
@@ -53,13 +55,33 @@ let generateCart = () => {
 cartContainer.innerHTML = generateCart();
 
 let incrementAmount = (id) => {
-    let selectedItem = id;
-    console.log(id);
+
+    let item = itemsBusket.find((element) => element.id === id);
+
+    if (item === undefined) {
+        itemsBusket.push({ id: id, count: 1 });
+    } else {
+        item.count += 1;
+    }
+
+    console.log(itemsBusket);
+    update(id);
 }
 let decrementAmount = (id) => {
 
-    console.log(id);
-}
-let update = () => {
+    let item = itemsBusket.find((element) => element.id === id);
 
+    if (item.count === 0) return;
+    else {
+        item.count -= 1;
+    }
+
+    console.log(itemsBusket);
+    update(id);
+}
+let update = (id) => {
+
+    let selectedItem = itemsBusket.find((item) => item.id === id);
+    console.log(selectedItem.id);
+    document.getElementById(id).innerHTML = selectedItem.count;
 }
