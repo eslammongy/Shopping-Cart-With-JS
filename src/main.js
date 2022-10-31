@@ -84,4 +84,11 @@ let update = (id) => {
     let selectedItem = itemsBusket.find((item) => item.id === id);
     console.log(selectedItem.id);
     document.getElementById(id).innerHTML = selectedItem.count;
+    calcItems();
+}
+
+let calcItems = () => {
+    let cartIcon = document.getElementById('cart-amount-id');
+    let itemsNum = itemsBusket.map((item) => item.count).reduce((x, y) => x + y, 0);
+    cartIcon.innerHTML = itemsNum;
 }
